@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#180d20">
+<title>Um cantinho para Naty 💗</title>
+<style>
+:root{--bg:#120b19;--card:#24152d;--pink:#ff8fbd;--soft:#ffd6e7;--gold:#f5d58b;--text:#fff7fb;--muted:#d8c4d2}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 15% 5%,#44213e 0,transparent 34%),radial-gradient(circle at 90% 35%,#312044 0,transparent 32%),var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,sans-serif;line-height:1.55}
+.wrap{max-width:850px;margin:auto;padding:24px 16px 60px}.hero{text-align:center;padding:54px 16px 38px}.heart{font-size:42px;animation:pulse 1.6s infinite}@keyframes pulse{50%{transform:scale(1.13)}}h1{font-size:clamp(2rem,7vw,3.5rem);line-height:1.08;margin:12px 0;color:var(--soft)}.sub{color:var(--muted);max-width:570px;margin:12px auto 22px}.btn,button{border:0;border-radius:999px;padding:12px 19px;background:linear-gradient(110deg,#ff8fbd,#f5c3d9);color:#321528;font-weight:750;font-size:15px;cursor:pointer}button:hover,.btn:hover{filter:brightness(1.08);transform:translateY(-1px)}.section-title{text-align:center;color:var(--gold);margin:38px 0 18px}.card{background:linear-gradient(145deg,rgba(55,33,62,.96),rgba(32,20,42,.96));border:1px solid #68445f;border-radius:22px;padding:22px;margin:15px 0;box-shadow:0 12px 35px #0003}.card h2{margin:0 0 8px;color:var(--soft);font-size:1.25rem}.hint{color:var(--muted);font-size:.94rem;margin-top:0}.choices{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:9px;margin-top:14px}.choices button{border:1px solid #815b76;background:#392440;color:var(--text);border-radius:14px;font-weight:600}.choices button:focus,.choices button:hover{background:#68405e}.result{min-height:26px;color:var(--gold);font-weight:650;margin:13px 0 0}.field{width:100%;padding:12px 14px;border-radius:12px;border:1px solid #8c6680;background:#180f20;color:white;font:inherit;margin:8px 0}.small{font-size:.85rem;color:var(--muted)}.progress{height:7px;background:#51354e;border-radius:10px;overflow:hidden;margin:14px 0}.progress span{display:block;height:100%;width:0;background:var(--pink);transition:width .3s}.footer{text-align:center;color:var(--muted);padding:30px 10px}.hidden{display:none}.spark{color:var(--pink)}
+</style>
+</head>
+<body>
+<main class="wrap">
+<header class="hero">
+<div class="heart">💗</div>
+<p class="spark">UMA SURPRESA FEITA COM CARINHO</p>
+<h1>Um cantinho só seu, Naty</h1>
+<p class="sub">Preparei algumas perguntinhas, brincadeiras e pequenas surpresas. Não existe resposta errada: a ideia é você sorrir e se divertir. 💕</p>
+<button onclick="document.getElementById('jogos').scrollIntoView({behavior:'smooth'})">Começar a diversão ✨</button>
+</header>
+
+<section class="card" style="text-align:center">
+<h2>Antes de começar…</h2>
+<p>Quero que você saiba que sua presença deixa meus dias mais especiais. Obrigado por ser você e por fazer parte da minha história. ❤️</p>
+<p class="small">Responda no seu tempo. Cada jogo é uma pequena surpresa!</p>
+</section>
+
+<h2 class="section-title" id="jogos">🎀 8 joguinhos para você</h2>
+
+<section class="card">
+<h2>1. Escolha uma caixinha 🎁</h2><p class="hint">Qual surpresa você abriria primeiro?</p>
+<div class="choices"><button onclick="reveal(this,'Uma mensagem dizendo o quanto você é especial. 💌')">💌 Mensagem</button><button onclick="reveal(this,'Um encontro cheio de conversa, risadas e boas lembranças. 🌷')">🌷 Um encontro</button><button onclick="reveal(this,'Uma playlist com músicas que lembram momentos felizes. 🎶')">🎶 Playlist</button></div><p class="result"></p>
+</section>
+
+<section class="card">
+<h2>2. Quiz: quanto você me conhece? 💞</h2><p class="hint" id="quizq">Qual dessas coisas combina mais com um momento perfeito a dois?</p>
+<div class="choices" id="quizopts"><button onclick="quiz(0)">Uma conversa longa</button><button onclick="quiz(1)">Um passeio divertido</button><button onclick="quiz(2)">Assistir algo juntinhos</button></div><p class="result" id="quizresult"></p><button class="hidden" id="quiznext" onclick="nextQuiz()">Próxima pergunta</button>
+</section>
+
+<section class="card">
+<h2>3. Complete a frase ✍️</h2><p class="hint">“Uma das coisas que mais gosto em você é…”</p><input class="field" id="phrase" placeholder="Escreva sua resposta aqui"><button onclick="showInput('phrase','phraseresult','Que resposta linda! Guarde esse carinho no coração. 💗')">Enviar resposta</button><p class="result" id="phraseresult"></p>
+</section>
+
+<section class="card">
+<h2>4. Verdadeiro ou falso? 💡</h2><p class="hint">“Pequenos gestos podem transformar um dia comum em um dia especial.”</p>
+<div class="choices"><button onclick="answer('tf','Verdadeiro! Os pequenos gestos fazem diferença. 🌸')">Verdadeiro</button><button onclick="answer('tf','Essa é uma pegadinha: eu voto em verdadeiro! 😊')">Falso</button></div><p class="result" id="tf"></p>
+</section>
+
+<section class="card">
+<h2>5. Escolha nosso clima de hoje ☁️</h2><p class="hint">Que tipo de momento combina com você agora?</p>
+<div class="choices"><button onclick="answer('mood','Dia de risadas e brincadeiras! 😄')">😄 Engraçado</button><button onclick="answer('mood','Um dia calmo, leve e cheio de carinho. 🌙')">🌙 Tranquilo</button><button onclick="answer('mood','Dia de aventura e novas lembranças! ✨')">✨ Aventureiro</button></div><p class="result" id="mood"></p>
+</section>
+
+<section class="card">
+<h2>6. Adivinhe a palavra 🔎</h2><p class="hint">É algo que cresce quando é dividido e deixa os dias mais bonitos. O que é?</p>
+<input class="field" id="guess" placeholder="Digite seu palpite"><button onclick="checkGuess()">Conferir</button><p class="result" id="guessresult"></p>
+</section>
+
+<section class="card">
+<h2>7. Escolha um número da sorte 🍀</h2><p class="hint">Cada número esconde uma mensagem.</p>
+<div class="choices"><button onclick="number(1)">1</button><button onclick="number(2)">2</button><button onclick="number(3)">3</button><button onclick="number(4)">4</button></div><p class="result" id="numberresult"></p>
+</section>
+
+<section class="card">
+<h2>8. Uma pergunta do coração 💌</h2><p class="hint">Qual lembrança nossa faz você sorrir quando pensa nela?</p>
+<textarea class="field" id="memory" rows="3" placeholder="Conte aqui uma lembrança especial…"></textarea><button onclick="showInput('memory','memoryresult','Essa lembrança merece ficar guardada com carinho. Obrigado por compartilhar! 💖')">Guardar lembrança</button><p class="result" id="memoryresult"></p>
+</section>
+
+<section class="card" style="text-align:center">
+<h2>Uma última mensagem para você, Naty 🌹</h2>
+<p>Entre tantas pessoas no mundo, sou feliz por ter você na minha vida. Que nunca faltem motivos para sorrir, conversar, aprender e criar novas lembranças. Você é muito especial para mim. 💗</p>
+<button onclick="document.getElementById('finalsurprise').classList.toggle('hidden')">Abrir surpresa final ✨</button>
+<p id="finalsurprise" class="result hidden">Se você chegou até aqui, ganhou um abraço em forma de palavras: gosto muito de você! ❤️</p>
+</section>
+<footer class="footer">Feito com carinho, especialmente para você. 💗</footer>
+</main>
+<script>
+function reveal(btn,msg){btn.parentElement.nextElementSibling.textContent=msg}
+const qs=[
+{q:'Qual dessas coisas combina mais com um momento perfeito a dois?',a:['Uma conversa longa','Um passeio divertido','Assistir algo juntinhos']},
+{q:'O que deixa um dia mais bonito?',a:['Uma mensagem carinhosa','Uma boa surpresa','Uma boa gargalhada']},
+{q:'Escolha uma lembrança para criar:',a:['Uma viagem','Um piquenique','Uma noite de jogos']}
+];let qi=0;
+function quiz(n){document.getElementById('quizresult').textContent='Boa escolha! 💗 Agora quero saber sua resposta para a próxima também.';document.getElementById('quiznext').classList.remove('hidden')}
+function nextQuiz(){qi=(qi+1)%qs.length;document.getElementById('quizq').textContent=qs[qi].q;document.getElementById('quizopts').innerHTML=qs[qi].a.map((x,i)=>`<button onclick="quiz(${i})">${x}</button>`).join('');document.getElementById('quizresult').textContent='';document.getElementById('quiznext').classList.add('hidden')}
+function answer(id,msg){document.getElementById(id).textContent=msg}
+function showInput(input,out,msg){let v=document.getElementById(input).value.trim();document.getElementById(out).textContent=v?msg:'Escreva sua resposta antes de enviar. 💕'}
+function checkGuess(){let v=document.getElementById('guess').value.toLowerCase().trim();document.getElementById('guessresult').textContent=(v.includes('amor')||v.includes('carinho')||v.includes('amizade'))?'Acertou! A resposta pode ser amor, carinho ou amizade. 💖':'Dica: é um sentimento bonito que fica maior quando compartilhado. 😉'}
+function number(n){const m={1:'Você merece muitos motivos para sorrir. 🌷',2:'Que nunca faltem sonhos para realizar. ✨',3:'Seu jeito de ser é único e especial. 💗',4:'Que venham muitas lembranças felizes! 🎉'};document.getElementById('numberresult').textContent=m[n]}
+</script>
+</body>
+</html>
